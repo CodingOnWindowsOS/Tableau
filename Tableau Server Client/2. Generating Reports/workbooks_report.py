@@ -65,7 +65,7 @@ def main():
         }
     )
 
-    # Create a workbooks report by merging workbook info and user info dataframes.
+    # Create a workbooks report by merging workbook info, view info, and user info dataframes.
     workbooks_report = (
         workbook_info
         .merge(
