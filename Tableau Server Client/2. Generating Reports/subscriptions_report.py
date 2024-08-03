@@ -69,7 +69,8 @@ def main():
     # Vertically concatenate the workbook info and view info dataframes.
     content_info = pd.concat(
         [workbook_info, view_info],
-        axis=0
+        axis=0,
+        ignore_index=True
     )
 
     # Create a dataframe containing user information.
