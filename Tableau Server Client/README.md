@@ -3,6 +3,7 @@ Use these python (.py) files/scripts corresponding to each of my Tableau Server 
 
 1. Getting Started
    - Learn to authenticate and sign-in to your Tableau Server or Tableau Cloud instance for the first time. Updates to the token value are required unless you are also using the keyring module to store and retrieve your personal access tokens.
+   - Query your server for the first time to retrieve information on all data sources published and maintained on your Tableau Server or Tableau Cloud instance.
 
 2. Generating Reports
    - Use these scripts to automate the generation of reports on various content and object types (e.g., flows, users, workbooks, data sources, etc.).
