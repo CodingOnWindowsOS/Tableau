@@ -1,4 +1,4 @@
-# Automation with Tableau Server Client
+# Automation with Tableau Server Client (TSC)
 Use these python (.py) files/scripts corresponding to each of my Tableau Server Client tutorials featured on my YouTube channel to save time and hundreds, if not thousands of clicks through automation.
 
 1. Getting Started
@@ -10,7 +10,7 @@ Use these python (.py) files/scripts corresponding to each of my Tableau Server 
 3. Refreshing Data
    - Automate the execution of flows, linked tasks, and extract refreshes on your Tableau Server or Tableau Cloud instance using these scripts.
 
-Generating Personal Access Tokens
+#### Generating Personal Access Tokens
 To generate a personal access token (i.e., token_value as shown in the scripts), do the following:
 1. Navigate to your accounts settings (My Account Settigns) on your Tableau Server or Tableau Cloud instance.
 2. Scroll down to the Personal Access Tokens Section.
