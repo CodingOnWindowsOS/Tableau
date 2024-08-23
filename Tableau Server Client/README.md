@@ -9,6 +9,8 @@ Use these python (.py) files/scripts corresponding to each of my Tableau Server 
 
 3. Refreshing Data
    - Automate the execution of flows, linked tasks, and extract refreshes on your Tableau Server or Tableau Cloud instance using these scripts.
+   - Implement conditional execution logic that is not currently supported by Tableau Server and Tableau Cloud products.
+   - Refresh your data at frequencies not currently supported by Tableau Server and Tableau Cloud products.
 
 #### Generating Personal Access Tokens
 To generate a personal access token (i.e., token_value as shown in the scripts), do the following:
