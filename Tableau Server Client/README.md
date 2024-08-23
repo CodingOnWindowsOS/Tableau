@@ -1,5 +1,5 @@
 # Automation with Tableau Server Client (TSC)
-Use these python (.py) files/scripts corresponding to each of my Tableau Server Client tutorials featured on my YouTube channel to save time and hundreds, if not thousands of clicks through automation.
+Use these python (.py) files/scripts corresponding to each of my Tableau Server Client tutorials featured on my YouTube channel (https://www.youtube.com/@ChrisMPerry) to save time and hundreds, if not thousands of clicks through automation.
 
 1. Getting Started
    - Learn to authenticate and sign-in to your Tableau Server or Tableau Cloud instance for the first time. Updates to the token value are required unless you are also using the keyring module to store and retrieve your personal access tokens.
