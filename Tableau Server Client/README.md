@@ -19,3 +19,9 @@ To generate a personal access token (i.e., token_value as shown in the scripts),
 2. Scroll down to the Personal Access Tokens Section.
 3. Type/enter in your preferred token name and click "Create Token."
 4. Copy/paste the generated token into the python script as the token_value.
+
+# Special Thanks
+I want to give special thanks to the maintainers and individual contributors to the Tableau Server Client Python library. Without them, I wouldn’t have been able to increase my organization’s productivity to the great extent I have nor would I be able to provide you these pre-built scripts to help you do the same!
+
+Check out the official repository: https://github.com/tableau/server-client-python/tree/master
+
