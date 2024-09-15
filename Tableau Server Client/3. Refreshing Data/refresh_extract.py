@@ -42,7 +42,7 @@ def main():
                 'Job finished succesfully\n\n'
                 'Job Details\n'
                 f'Job ID: {job.id}\n'
-                f'Flow Name: {data_source.name}\n'
+                f'Data Source Name: {data_source.name}\n'
                 f'Job Created Time: {job.started_at}\n'
                 f'Job Start Time: {job.started_at}\n'
                 f'Job End Time: {job.completed_at}\n'
