@@ -13,6 +13,10 @@ Use these python (.py) files/scripts corresponding to each of my Tableau Server 
    - Implement conditional execution logic that is not currently supported by Tableau Server and Tableau Cloud products.
    - Refresh your data at frequencies not currently supported by Tableau Server and Tableau Cloud products.
 
+4. Adding, Updating, and Removing Objects
+   - Use these scripts to add/create, update, and remove/delete objects on your Tableau Server or Tableau Cloud instance.
+   - Users, groups, projects, data sources, workbooks, flows, subscriptions, and favorites among other objects can be modifed programmatically.
+     
 #### Generating Personal Access Tokens
 To generate a personal access token (i.e., token_value as shown in the scripts), do the following:
 1. Navigate to your account settings (My Account Settings) on your Tableau Server or Tableau Cloud instance.
