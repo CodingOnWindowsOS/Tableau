@@ -19,7 +19,11 @@ def main():
         # Ensure the most recent Tableau REST API version is used.
         server.use_highest_version()
         # Configure new user. Tableau Cloud requires you to provide the authentication setting.
-        new_user = tsc.UserItem(name='sqlshortreads@gmail.com', site_role='Unlicensed', auth_setting='TableauIDWithMFA')
+        new_user = tsc.UserItem(
+            name='sqlshortreads@gmail.com',
+            site_role='Unlicensed',
+            auth_setting='TableauIDWithMFA'
+        )
         
         # Add user to the Tableau Server or Tableau Cloud instance.
         try:
