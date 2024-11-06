@@ -15,7 +15,7 @@ def main():
     # Disable certificate verification. The next line of code may be required due to certificate issues.
     # server.add_http_options({'verify': False})
 
-        # Sign-in to server.
+    # Sign-in to server.
     with server.auth.sign_in(tableau_auth):
         # Ensure the most recent Tableau REST API version is used.
         server.use_highest_version()
