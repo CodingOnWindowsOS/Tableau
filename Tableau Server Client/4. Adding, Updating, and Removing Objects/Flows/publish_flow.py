@@ -26,7 +26,7 @@ def main():
         projects = server.projects.filter(name='Flows')
         project = [project for project in projects if project.parent_id == parent_project[0].id]
 
-        # Configure the new data source.
+        # Configure the new flow.
         new_flow = tsc.FlowItem(
             name='Dynamic calendar table',
             project_id=project[0].id
