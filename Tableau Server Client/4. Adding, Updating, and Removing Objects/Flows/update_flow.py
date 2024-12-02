@@ -24,7 +24,7 @@ def main():
         # Create a project filter for the project for which the flow will be moved to.
         # There are multiple "flows" projects, so the one with a parent project
         # name of "Europe Sales" must be identified.
-        parent_project = server.projects.filter(name='Europe Sales')
+        parent_project = server.projects.filter(name='North America Sales')
         projects = server.projects.filter(name='Flows')
         project = [project for project in projects if project.parent_id == parent_project[0].id]
 
