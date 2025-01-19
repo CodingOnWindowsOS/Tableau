@@ -1,5 +1,4 @@
 import keyring
-from pathlib import Path
 import tableauserverclient as tsc
 import time
 
