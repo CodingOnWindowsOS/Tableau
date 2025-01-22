@@ -16,7 +16,10 @@ Use these python (.py) files/scripts corresponding to each of my Tableau Server 
 4. Adding, Updating, and Removing Objects
    - Use these scripts to add/create, update, and remove/delete objects on your Tableau Server or Tableau Cloud instance.
    - Users, groups, projects, data sources, workbooks, flows, subscriptions, and favorites among other objects can be modifed programmatically.
-     
+  
+5. Bridging the Gaps  
+In this folder, you will find various scripts dedicated to delivering functionality not currently supported by Tableau’s products. The scripts bridge the gaps between what Tableau currently offers its users and what those users need.
+   
 #### Generating Personal Access Tokens
 To generate a personal access token (i.e., token_value as shown in the scripts), do the following:
 1. Navigate to your account settings (My Account Settings) on your Tableau Server or Tableau Cloud instance.
