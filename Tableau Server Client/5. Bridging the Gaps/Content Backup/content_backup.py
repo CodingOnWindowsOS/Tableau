@@ -3,7 +3,7 @@ import tableauserverclient as tsc
 from pathlib import Path
 
 # Specify path to download content to.
-DOWNLOAD_TO_PATH = Path('C:/Users/Chris/Desktop/social_media_content/youtube/tableau_server_client/tutorial_25/content_backup')
+DOWNLOAD_TO_PATH = Path('C:/Users/Chris/OneDrive/Desktop/social_media_content/youtube/tableau_server_client/tutorial_25/content_backup')
 
 def download_content(
         server: tsc.Server,
