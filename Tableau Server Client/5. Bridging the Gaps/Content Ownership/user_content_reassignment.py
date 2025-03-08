@@ -24,7 +24,6 @@ with SERVER.auth.sign_in(TABLEAU_AUTHENTICATION):
         from_user = SERVER.users.filter(name=from_user)[0]
         to_user = SERVER.users.filter(name=to_user)[0]
         data_sources = [data_source for data_source in tsc.Pager(SERVER.datasources) if data_source.owner_id == from_user.id]
-        flows = [flow for flow in tsc.Pager(SERVER.flows) if flow.owner_id == from_user.id]
         projects = [project for project in tsc.Pager(SERVER.projects) if project.owner_id == from_user.id]
         workbooks = [workbook for workbook in tsc.Pager(SERVER.workbooks) if workbook.owner_id == from_user.id]
         # Assign all content owned by 'from_user' to 'to_user.'
@@ -32,10 +31,6 @@ with SERVER.auth.sign_in(TABLEAU_AUTHENTICATION):
             for data_source in data_sources:
                 data_source.owner_id = to_user.id
                 SERVER.datasources.update(data_source_item=data_source)
-        if flows:
-            for flow in flows:
-                flow.owner_id = to_user.id
-                SERVER.flows.update(flow_item=flow)
         if projects:
             for project in projects:
                 project.owner_id = to_user.id
