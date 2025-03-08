@@ -16,6 +16,7 @@ user_content_mapping = pd.read_excel(r'C:\Users\Chris\OneDrive\Desktop\social_me
 from_users = user_content_mapping['FROM_USER'].to_list()
 to_users = user_content_mapping['TO_USER'].to_list()
 
+# Authenticate and sign-in to the Tableau Server or Tableau Cloud instance.
 with SERVER.auth.sign_in(TABLEAU_AUTHENTICATION):
     # Iterate through each row containing the respective user content mapping.
     for from_user, to_user in zip(from_users, to_users):
