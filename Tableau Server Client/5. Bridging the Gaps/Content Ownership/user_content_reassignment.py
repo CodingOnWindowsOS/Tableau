@@ -21,7 +21,7 @@ def main():
     with SERVER.auth.sign_in(TABLEAU_AUTHENTICATION):
         # Iterate through each row containing the respective user content mapping.
         for from_user, to_user in zip(from_users, to_users):
-            # Retrieve all content associated with the 'from_user.'
+            # Retrieve data sources and workbooks associated with the 'from_user.'
             from_user = SERVER.users.filter(name=from_user)[0]
             to_user = SERVER.users.filter(name=to_user)[0]
             data_sources = [data_source for data_source in tsc.Pager(SERVER.datasources) if data_source.owner_id == from_user.id]
