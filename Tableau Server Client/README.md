@@ -27,7 +27,7 @@ To generate a personal access token (i.e., token_value as shown in the scripts),
 3. Type/enter in your preferred token name and click "Create Token."
 4. Copy/paste the generated token into the python script as the token_value.
 
-# Authenticating and signing-in to your Tableau Server or Tableau Cloud instance.
+#### Authenticating and signing-in to your Tableau Server or Tableau Cloud instance.
 In many of my scripts, I have taken advantage of server.use_highest_version() to ensure I am using the most recent API version supported by the specific Tableau Server or Tableau Cloud version. Due to deprecation warnings, I have recently began using user_server_version=True in the SERVER object configuration; however, this doesn't work as intended when connecting to Tableau Server instances and often results in using API versions that don't support newer endpoints / features. Use whichever method works for you or simply specify the version explicitly.
 
 # Special Thanks
