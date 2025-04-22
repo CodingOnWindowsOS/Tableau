@@ -352,7 +352,7 @@ def display_subscriptions(target_user_subscriptions: list[dict]) -> None:
             streamlit.dataframe(data=type_specific_subscription_data, hide_index=True)
     return None
 
-def extract_site_id(full_server_url) -> str | None:
+def extract_site_id(full_server_url: str) -> str | None:
     """
     Given a full server URL, returns the site ID.
 
@@ -365,7 +365,7 @@ def extract_site_id(full_server_url) -> str | None:
     match = re.search(r'/site/([^/#]+)', full_server_url)
     return match.group(1) if match else None
 
-def extract_base_server_url(full_server_url) -> str:
+def extract_base_server_url(full_server_url: str) -> str:
     """
     Given a full server URL, returns the base URL.
 
