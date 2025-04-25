@@ -59,7 +59,7 @@ def sign_in(base_server_url: str, site_id: str, token_name: str, token_value: st
     headers['site_luid'] = site_luid
     return headers
 
-def sign_out(base_server_url: str, headers: dict, verify_certificate: bool) -> None:
+def sign_out(base_server_url: str, headers: dict, verify_certificate: bool = True) -> None:
     """
     Signs the authenticated user out of the Tableau Server or Tableau Cloud instance.
 
