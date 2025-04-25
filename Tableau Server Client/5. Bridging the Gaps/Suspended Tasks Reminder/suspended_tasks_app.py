@@ -45,7 +45,7 @@ def sign_in(base_server_url: str, site_id: str, token_name: str, token_value: st
     }
     sign_in_request = requests.post(sign_in_url, json=payload, headers=headers, verify=verify_certificate)
     
-    if not sign_in_request.status_code == 200:
+    if sign_in_request.status_code != 200:
         sign_in_exception = Exception(f'Sign-in failed with status code {sign_in_request.status_code}')
         streamlit.exception(sign_in_exception)
         return False
