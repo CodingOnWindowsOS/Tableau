@@ -50,7 +50,7 @@ def sign_in(base_server_url: str, site_id: str, token_name: str, token_value: st
         streamlit.exception(sign_in_exception)
         return False
 
-    # Convert response to dictionary to extract the token and site ID for the subsequent subscription request.
+    # Convert response to dictionary to extract the token and site ID for the subsequent request.
     sign_in_response = json.loads(sign_in_request.content)
     # Extract token and site ID.
     token = sign_in_response['credentials']['token']
