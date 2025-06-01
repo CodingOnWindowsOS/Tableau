@@ -5,54 +5,63 @@ The organization’s structure consists of the following five regions, North Ame
 
 Use the Tableau Server Client (TSC) python library to create the organizational structure, programattically. Start off by creating a "DataDevQuest Challenge" project. This is the project where the new organizational structure will be maintained within. Upon completing the challenge, the DataDevQuest Challenge project hierarchy should look like the following:
 
-DataDevQuest Challenge
-	Brazil
-		Marketing
-		Sales
-		Technology
-		Operations
-		Finance
-		Customer Support
-		Product
-		Legal
-		HR
-	EMAP & APAC
-		Marketing
-		Sales
-		Technology
-		Operations
-		Finance
-		Customer Support
-		Product
-		Legal
-		HR
-	North America
-		Marketing
-		Sales
-		Technology
-		Operations
-		Finance
-		Customer Support
-		Product
-		Legal
-		HR
-	Spanish Latam
-		Marketing
-		Sales
-		Technology
-		Operations
-		Finance
-		Customer Support
-		Product
-		Legal
-		HR
-	UK&I
-		Marketing
-		Sales
-		Technology
-		Operations
-		Finance
-		Customer Support
-		Product
-		Legal
-		HR
+- DataDevQuest Challenge  
+  - APAC  
+    - Marketing  
+    - Sales  
+    - Technology  
+    - Operations  
+    - Finance  
+    - Customer Support  
+    - Product  
+    - Legal  
+    - Human Resources  
+  - Brazil  
+    - Marketing  
+    - Sales  
+    - Technology  
+    - Operations  
+    - Finance  
+    - Customer Support  
+    - Product  
+    - Legal  
+    - Human Resources  
+  - EMEA  
+    - Marketing  
+    - Sales  
+    - Technology  
+    - Operations  
+    - Finance  
+    - Customer Support  
+    - Product  
+    - Legal  
+    - Human Resources  
+  - North America  
+    - Marketing  
+    - Sales  
+    - Technology  
+    - Operations  
+    - Finance  
+    - Customer Support  
+    - Product  
+    - Legal  
+    - Human Resources  
+  - Spanish Latam  
+    - Marketing  
+    - Sales  
+    - Technology  
+    - Operations  
+    - Finance  
+    - Customer Support  
+    - Product  
+    - Legal  
+    - Human Resources  
+  - UK&I  
+    - Marketing  
+    - Sales  
+    - Technology  
+    - Operations  
+    - Finance  
+    - Customer Support  
+    - Product  
+    - Legal
