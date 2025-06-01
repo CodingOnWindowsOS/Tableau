@@ -3,4 +3,56 @@ Today is the day. Your team is standing up their Tableau Server in preparation f
 
 The organization’s structure consists of the following five regions, North America, Brazil, UK&I, Spanish Latam, EMEA, and APAC. Each of those regions is comprised of nine divisions, Marketing, Sales, Technology, Operations, Finance, Customer Support, Product, Legal, and Human Resources.
 
-Use the Tableau Server Client (TSC) python library to create the organizational structure, programattically.
+Use the Tableau Server Client (TSC) python library to create the organizational structure, programattically. Start off by creating a "DataDevQuest Challenge" project. This is the project where the new organizational structure will be maintained within. Upon completing the challenge, the DataDevQuest Challenge project hierarchy should look like the following:
+
+DataDevQuest Challenge
+	Brazil
+		Marketing
+		Sales
+		Technology
+		Operations
+		Finance
+		Customer Support
+		Product
+		Legal
+		HR
+	EMAP & APAC
+		Marketing
+		Sales
+		Technology
+		Operations
+		Finance
+		Customer Support
+		Product
+		Legal
+		HR
+	North America
+		Marketing
+		Sales
+		Technology
+		Operations
+		Finance
+		Customer Support
+		Product
+		Legal
+		HR
+	Spanish Latam
+		Marketing
+		Sales
+		Technology
+		Operations
+		Finance
+		Customer Support
+		Product
+		Legal
+		HR
+	UK&I
+		Marketing
+		Sales
+		Technology
+		Operations
+		Finance
+		Customer Support
+		Product
+		Legal
+		HR
