@@ -78,7 +78,7 @@ Use the Tableau Server Client (TSC) python library to create the organizational 
   
   Use package, os and dotenv, to load your environment file and allow its variables to be accessed. This step is critical for accessing your Tableau Server or Tableau Cloud instance, programmatically. The contents of the .env file used for this tutorial can be found below.
   
-  TABLEAU_SERVER_FULL_URL=https://10ax.online.tableau.com/#/site/sqlshortreads  
+  TABLEAU_SERVER_FULL_URL=`https://10ax.online.tableau.com/#/site/sqlshortreads`  
   TABLEAU_SERVER_SITE_ID=sqlshortreads  
   TABLEAU_SERVER_TOKEN_NAME=TSM  
   TABLEAU_SERVER_TOKEN_VALUE=VmhlQ6HbQDqrAD8/AZiQ9g==:n3RsYPPNt8w6covEZG9f37Kn4KTf8M0G  
