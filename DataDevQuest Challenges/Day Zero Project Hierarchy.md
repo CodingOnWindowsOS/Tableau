@@ -70,9 +70,9 @@ Use the Tableau Server Client (TSC) python library to create the organizational 
         - Legal
 </details>
 
-# Solution walkthrough
+# Tutorial
 <details>
-  <summary>Click to begin reading the solution walkthrough.</summary>
+  <summary>Click to begin reading the tutorial.</summary>
   
   Import the necessary packages. Each of these packages will be discussed in turn.
   
