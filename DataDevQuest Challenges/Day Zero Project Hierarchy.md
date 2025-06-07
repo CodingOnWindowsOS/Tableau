@@ -97,6 +97,14 @@ TABLEAU_VERIFY_CERTIFICATE = os.getenv('TABLEAU_VERIFY_CERTIFICATE', 'True') == 
 ```
 Create a means to authenticate with your Tableau Server or Tableau Cloud instance by using TSC’s PersonalAccessTokenAuth class. Pass in the environment variables that correspond to token name, token value, and site ID, if applicable. If you are using Tableau Server and use the default site, then your site ID values should be None or an empty string.
 
+```python
+# Create authentication object using the token and site ID details.
+TABLEAU_AUTHENTICATION = tsc.PersonalAccessTokenAuth(
+  token_name=TABLEAU_SERVER_TOKEN_NAME,
+  personal_access_token=TABLEAU_SERVER_TOKEN_VALUE,
+  site_id=TABLEAU_SERVER_SITE_ID
+)
+```
   
 </details>
 
