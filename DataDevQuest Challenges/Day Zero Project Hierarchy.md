@@ -73,16 +73,29 @@ Use the Tableau Server Client (TSC) python library to create the organizational 
 # Tutorial
 <details>
   <summary>Click to begin reading the tutorial.</summary>
-  
-  Import the necessary packages. Each of these packages will be discussed in turn.
-  
-  Use package, os and dotenv, to load your environment file and allow its variables to be accessed. This step is critical for accessing your Tableau Server or Tableau Cloud instance, programmatically. The contents of the .env file used for this tutorial can be found below.
-  
-  TABLEAU_SERVER_FULL_URL=`https://10ax.online.tableau.com/#/site/sqlshortreads`  
-  TABLEAU_SERVER_SITE_ID=sqlshortreads  
-  TABLEAU_SERVER_TOKEN_NAME=TSM  
-  TABLEAU_SERVER_TOKEN_VALUE=VmhlQ6HbQDqrAD8/AZiQ9g==:n3RsYPPNt8w6covEZG9f37Kn4KTf8M0G  
-  TABLEAU_VERIFY_CERTIFICATE=False
+
+Create an environment (.env) file and place it in the same directory as the python file dedicated to this tutorial for ease-of-access. The contents of the .env file used for this tutorial can be found below.
+
+TABLEAU_SERVER_FULL_URL=https://10ax.online.tableau.com/#/site/sqlshortreads
+TABLEAU_SERVER_SITE_ID=sqlshortreads
+TABLEAU_SERVER_TOKEN_NAME=TSM
+TABLEAU_SERVER_TOKEN_VALUE=VmhlQ6HbQDqr9QF/AZiQ9g==:n3RsYPPNt8w6covEZG9f37Kn4KTf8M0G
+TABLEAU_VERIFY_CERTIFICATE=False
+
+Import the necessary packages. Each of these packages will be discussed in turn.
+
+Use package, os and dotenv, to load your environment file and allow its variables to be accessed. This step is critical for accessing your Tableau Server or Tableau Cloud instance, programmatically.
+
+```python
+# Load environment variables from .env file.
+load_dotenv()
+TABLEAU_SERVER_FULL_URL = os.getenv('TABLEAU_SERVER_FULL_URL')
+TABLEAU_SERVER_SITE_ID = os.getenv('TABLEAU_SERVER_SITE_ID')
+TABLEAU_SERVER_TOKEN_NAME = os.getenv('TABLEAU_SERVER_TOKEN_NAME')
+TABLEAU_SERVER_TOKEN_VALUE = os.getenv('TABLEAU_SERVER_TOKEN_VALUE')
+TABLEAU_VERIFY_CERTIFICATE = os.getenv('TABLEAU_VERIFY_CERTIFICATE', 'True') == 'True'
+```
+Create a means to authenticate with your Tableau Server or Tableau Cloud instance by using TSC’s PersonalAccessTokenAuth class. Pass in the environment variables that correspond to token name, token value, and site ID, if applicable. If you are using Tableau Server and use the default site, then your site ID values should be None or an empty string.
 
   
 </details>
