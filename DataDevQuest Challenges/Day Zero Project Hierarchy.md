@@ -108,10 +108,12 @@ TABLEAU_AUTHENTICATION = tsc.PersonalAccessTokenAuth(
 
 Next, create an instance of TSC’s Server and pass in the base URL associated with your Tableau Server or Tableau Cloud instance. If you are authenticating with a Tableau Server that uses the default site, then the full server URL and the base URL will be identical. Otherwise, be sure to exclude the site ID from the URL. Optionally, choose to not verify the server's SSL/TLS certificate.
 
+```python
 # Create a tableau server client object using specified server URL.
 SERVER = tsc.Server('https://10ax.online.tableau.com')
 # Disable certificate verification. The next line of code may be required due to certificate issues.
 SERVER.add_http_options({'verify': False})
+```
 
 </details>
 
