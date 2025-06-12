@@ -115,6 +115,21 @@ SERVER = tsc.Server('https://10ax.online.tableau.com')
 SERVER.add_http_options({'verify': False})
 ```
 
+Now, read in the organizational structure maintained within the CSV file provided and create a python dictionary containing a key for each unique region. Each key’s value should be the respective region’s divisions as a python list. Keep in mind, there are several ways to achieve the desired dictionary structure and the strategy shown below is just one way.
+
+```python
+# Read in organizational structure from a CSV file.
+ORGANIZATIONAL_STRUCTURE = pd.read_csv('organizational_structure.csv')
+# Create a mapping of regions to their respective divisions.
+region_division_mapping = (
+  ORGANIZATIONAL_STRUCTURE
+  .groupby('Region')['Division']
+  .unique()
+  .apply(list)
+  .to_dict()
+)
+```
+
 </details>
 
 # Solution
