@@ -106,7 +106,7 @@ TABLEAU_AUTHENTICATION = tsc.PersonalAccessTokenAuth(
 )
 ```
 
-Next, create an instance of TSC’s Server class and pass in the base URL associated with your Tableau Server or Tableau Cloud instance. If you are authenticating with a Tableau Server that uses the default site, then the full server URL and the base URL will be identical. Otherwise, be sure to exclude the site ID from the URL. Optionally, choose to not verify the server's SSL/TLS certificate. If you are authenticating with a Tableau Cloud instance, maintaining the default value of True is unlikely to cause you any problems. I have only seen and experienced an issue with the default value when using Tableau Server instances maintained by the companies I have worked for.
+Next, create an instance of TSC’s Server class and pass in the base URL associated with your Tableau Server or Tableau Cloud instance. If you are authenticating with a Tableau Server that uses the default site, then the full server URL and the base URL will be identical. Otherwise, be sure to exclude the site ID from the URL. Optionally, choose not to verify the server's SSL/TLS certificate. If you are authenticating with a Tableau Cloud instance, maintaining the default value of True is unlikely to cause you any problems. I have only seen and experienced an issue with the default value when using Tableau Server instances maintained by the companies I have worked for.
 
 ```python
 # Create a tableau server client object using specified server URL.
