@@ -130,6 +130,7 @@ region_division_mapping = (
 )
 ```
 
+Aside from reading in the organizational structure and subsequently creating the region-division mapping, the previous steps are those that you will find yourself repeating throughout your future scripts aimed at interacting with your Tableau Server or Tableau cloud instance, programmatically, through Tableau Server Client.
 </details>
 
 # Solution
