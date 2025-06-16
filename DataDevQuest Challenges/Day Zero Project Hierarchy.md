@@ -160,6 +160,36 @@ parent_project = server.projects.filter(name='DataDevQuest Challenge')
 projects = server.projects.filter(name='North America')
 project = [project for project in projects if project.parent_id == parent_project[0].id]
 ```
+
+```python
+  # For each region, create a new project and then create the division projects within it.
+  for region, divisions in region_division_mapping.items():
+      new_region_project = tsc.ProjectItem(
+          name=region,
+          description=f'Parent project for {region} divisions.',
+          parent_id=parent_project_id
+      )
+      SERVER.projects.create(project_item=new_region_project)
+      # Wait for a short period to ensure the project is created before proceeding.
+      sleep(2)
+```
+
+```python
+        # Extract the ID of the newly created region project to use as a parent for division projects.
+        region_project_id = SERVER.projects.filter(name=region)[0].id
+        new_division_projects = [
+            tsc.ProjectItem(
+                name=division,
+                description=f"Project for {region}'s {division} division.",
+                parent_id=region_project_id
+            )
+            for division in divisions
+        ]
+        # Create each division project under the newly created region project.
+        for new_division_project in new_division_projects:
+            SERVER.projects.create(project_item=new_division_project)
+```
+
 </details>
 
 # Solution
