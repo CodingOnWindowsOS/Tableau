@@ -131,6 +131,18 @@ region_division_mapping = (
 ```
 
 Aside from reading in the organizational structure and subsequently creating the region-division mapping, the previous steps are those that you will find yourself repeating throughout your future scripts aimed at interacting with your Tableau Server or Tableau cloud instance, programmatically, through Tableau Server Client.
+
+In the next step, you will use the SERVER and TABLEAU_AUTHENTICATION objects created above to sign-in to your Tableau Server or Tableau Cloud instance. The method, “use_highest_version” ensures that the latest Tableau Rest API version supported by your Tableau Server or Tableau Cloud instance is used. The endpoints and overall functionality available to you through Tableau Server Client and the REST API will be determined by the version.
+
+When using this method, you will see a deprecation warning as the method is planned to be removed in the future. At the time of writing this tutorial, the SERVER object has an attribute called “use_server_version” that defaults to False. Setting the attribute to True is intended to replace the use of “use_highest_version.” The new attribute appears to work well with Tableau Cloud; however, I have not had any success using it with Tableau Server, so I would suggest continuing to use “use_highest_version” as shown below and in the solution, especially if you are connecting to Tableau Server.
+
+```python
+# Sign-in to server.
+with SERVER.auth.sign_in(TABLEAU_AUTHENTICATION):
+  # Ensure the most recent Tableau REST API version is used.
+  SERVER.use_highest_version()
+```
+
 </details>
 
 # Solution
