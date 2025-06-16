@@ -143,6 +143,23 @@ with SERVER.auth.sign_in(TABLEAU_AUTHENTICATION):
   SERVER.use_highest_version()
 ```
 
+Retrieve the project ID value corresponding to the “DataDevQuest Challenge” project you created at the beginning of this tutorial by using the projects endpoint and filter method. Remember, this is where the to-be project hierarchy will reside. By creating the project manually in advance, we have made the task of specifying where to place the new region and division projects less complex. Generally, you will not know the parent project ID value in advance and project names will not be unique across the environment.
+
+```python
+    # Extract the parent project ID for the 'DataDevQuest Challenge' project where the new projects will be created.
+    parent_project_id = SERVER.projects.filter(name='DataDevQuest Challenge')[0].id
+```
+
+Below is an example on how you could retrieve the parent project ID value (i.e., location) of a project to ensure any action you take programmatically applies to the right objects (e.g., flow, workbook, data source, project, etc.). To incorporate this into the solution provided, you would programmatically determine the ID value of the "DataDevQuest Challenge" to ensure each region project is created underneath that project. The same process would be repeated when creating the individual division projects corresponding to each region.
+
+```python
+        # Create a filter for the project for which the projects will be published.
+        # There could be multiple projects with the same name, so the one with a parent project
+        # name of "DataDevQuest Challenge" must be identified.
+        parent_project = server.projects.filter(name='DataDevQuest Challenge')
+        projects = server.projects.filter(name='North America')
+        project = [project for project in projects if project.parent_id == parent_project[0].id]
+```
 </details>
 
 # Solution
