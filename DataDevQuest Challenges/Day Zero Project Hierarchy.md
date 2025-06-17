@@ -161,6 +161,8 @@ projects = server.projects.filter(name='North America')
 project = [project for project in projects if project.parent_id == parent_project[0].id]
 ```
 
+For the next step, you will iterate over the region-division mapping dictionary to create a project for each region and a series of projects corresponding to that region. Each of these “region” projects are to be placed within the "DataDevQuest Challenge" project. Take special note on the use of sleep(2) here to artificially pause the script execution for two seconds immediately after the creation of each region project. This is required because the creation of a project may take longer to register on your Tableau Server or Tableau Cloud instance than the amount of time the script requires to continue with the subsequent creation of division projects underneath each region project. In other words, when you attempt to create the first division project for a particular region, it is quite possible that you will attempt to retrieve the project ID value for the parent project (i.e., respective region) and it will not exist yet, resulting in an error being thrown.
+
 ```python
   # For each region, create a new project and then create the division projects within it.
   for region, divisions in region_division_mapping.items():
