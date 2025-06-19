@@ -74,7 +74,7 @@ Use the Tableau Server Client (TSC) python library to create the organizational 
 <details>
   <summary>Click to begin reading the tutorial.</summary>
 
-Create an environment (.env) file and place it in the same directory as the python file dedicated to this tutorial for ease-of-access. The contents of the .env file used for this tutorial can be found below.
+Create an environment (.env) file and place it in the same directory as the python file dedicated to this tutorial for ease-of-access. The contents of the .env file used for this tutorial can be found below. Replace the values with those corresponding to your Tableau Server or Tableau Cloud instance.
 
 TABLEAU_SERVER_FULL_URL=https://10ax.online.tableau.com/#/site/sqlshortreads  
 TABLEAU_SERVER_SITE_ID=sqlshortreads  
