@@ -82,7 +82,16 @@ TABLEAU_SERVER_TOKEN_NAME=TSM
 TABLEAU_SERVER_TOKEN_VALUE=VmhlQ6HbQDqr9QF/AZiQ9g==:n3RsYPPNt8w6covEZG9f37Kn4KTf8M0G  
 TABLEAU_VERIFY_CERTIFICATE=False  
 
-Import the necessary packages. Each of these packages will be discussed in turn.
+Import the packages required for this tutorial.
+
+```python
+import os
+
+from dotenv import load_dotenv
+import pandas as pd
+import tableauserverclient as tsc
+from time import sleep
+```
 
 Use package, os and dotenv, to load your environment file and allow its variables to be accessed. This step is critical for accessing your Tableau Server or Tableau Cloud instance, programmatically.
 
@@ -139,8 +148,8 @@ When using this method, you will see a deprecation warning as the method is plan
 ```python
 # Sign-in to server.
 with SERVER.auth.sign_in(TABLEAU_AUTHENTICATION):
-  # Ensure the most recent Tableau REST API version is used.
-  SERVER.use_highest_version()
+    # Ensure the most recent Tableau REST API version is used.
+    SERVER.use_highest_version()
 ```
 
 Retrieve the project ID value corresponding to the “DataDevQuest Challenge” project you created at the beginning of this tutorial by using the projects endpoint and filter method. Remember, this is where the to-be project hierarchy will reside. By creating the project manually in advance, we have made the task of specifying where to place the new region and division projects less complex. Generally, you will not know the parent project ID value in advance and project names will not be unique across the environment.
@@ -164,19 +173,16 @@ project = [project for project in projects if project.parent_id == parent_projec
 For the next step, you will iterate over the region-division mapping dictionary to create a project for each region and a series of projects corresponding to each region. Each of these “region” projects are to be placed within the "DataDevQuest Challenge" project. Take special note on the use of sleep(2) here to artificially pause the script execution for two seconds immediately after the creation of each region project. This is required because the creation of a project may take longer to register on your Tableau Server or Tableau Cloud instance than the amount of time the script requires to continue with the subsequent creation of division projects underneath each region project. In other words, when you attempt to create the first division project for a particular region, it is quite possible that you will attempt to retrieve the project ID value for the parent project (i.e., respective region) and it will not exist yet, resulting in an error being thrown.
 
 ```python
-  # For each region, create a new project and then create the division projects within it.
-  for region, divisions in region_division_mapping.items():
-      new_region_project = tsc.ProjectItem(
-          name=region,
-          description=f'Parent project for {region} divisions.',
-          parent_id=parent_project_id
-      )
-      SERVER.projects.create(project_item=new_region_project)
-      # Wait for a short period to ensure the project is created before proceeding.
-      sleep(2)
-```
-
-```python
+    # For each region, create a new project and then create the division projects within it.
+    for region, divisions in region_division_mapping.items():
+        new_region_project = tsc.ProjectItem(
+            name=region,
+            description=f'Parent project for {region} divisions.',
+            parent_id=parent_project_id
+        )
+        SERVER.projects.create(project_item=new_region_project)
+        # Wait for a short period to ensure the project is created before proceeding.
+        sleep(2)
         # Extract the ID of the newly created region project to use as a parent for division projects.
         region_project_id = SERVER.projects.filter(name=region)[0].id
         new_division_projects = [
