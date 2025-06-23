@@ -1,9 +1,9 @@
 from datetime import datetime, timezone
+import pathlib
+
 import keyring
 import pandas as pd
-import pathlib
 import tableauserverclient as tsc
-
 def main():
     # Setup
     # Store token name, token value, and site ID in variables.
@@ -25,14 +25,17 @@ def main():
         users = [user for user in tsc.Pager(server.users)]
         # Create a dataframe containing user information.
         user_info = pd.DataFrame(
-            {
-                'User ID': [user.id for user in users],
-                'User Name': [user.name for user in users],
-                'User Display Name': [user.fullname for user in users],
-                'User Email Address': [user.email for user in users],
-                'User Domain': [server.users.get_by_id(user.id).domain_name for user in users],
-                'User Site Role': [user.site_role for user in users]
-            }
+            [
+                {
+                    'User ID': user.id,
+                    'User Name': user.name,
+                    'User Display Name': user.fullname,
+                    'User Email Address': user.email,
+                    'User Domain': server.users.get_by_id(user.id).domain_name,
+                    'User Site Role': user.site_role
+                }
+                for user in users
+            ]
         )
         
         # Gather user ID values for owners of flows, data sources, and workbooks.
@@ -60,7 +63,7 @@ def main():
 
     # Create and write users report dataframe to specified file path.
     write_path = pathlib.Path(
-        f'C:/Users/Chris/Desktop/social_media_content/youtube/tableau_server_client/tutorial_4/users_report_'\
+        f'C:/Users/Chris/OneDrive/Desktop/social_media_content/youtube/tableau_server_client/tutorial_4/users_report_'\
         f'{datetime.now(tz=timezone.utc).strftime("%Y%m%d%H%M%S")}.xlsx'
     )
 
