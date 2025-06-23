@@ -28,28 +28,33 @@ def main():
         users = [user for user in tsc.Pager(server.users)]
 
     # Create a dataframe containing data source information.
-    data_source_info = pd.DataFrame([
-        {
-            'Data Source ID': data_source.id,
-            'Data Source Owner ID': data_source.owner_id,
-            'Data Source Name': data_source.name,
-            'Data Source Type': data_source.datasource_type,
-            'Data Source Created At': data_source.created_at,
-            'Data Source Updated At': data_source.updated_at,
-            'Data Source Project ID': data_source.project_id,
-            'Data Source Project Name': data_source.project_name,
-            } for data_source in data_sources
+    data_source_info = pd.DataFrame(
+        [
+            {
+                'Data Source ID': data_source.id,
+                'Data Source Owner ID': data_source.owner_id,
+                'Data Source Name': data_source.name,
+                'Data Source Type': data_source.datasource_type,
+                'Data Source Created At': data_source.created_at,
+                'Data Source Updated At': data_source.updated_at,
+                'Data Source Project ID': data_source.project_id,
+                'Data Source Project Name': data_source.project_name,
+            }
+            for data_source in data_sources
         ]
     )
 
     # Create a dataframe containing user information.
-    user_info = pd.DataFrame([
-        {
-            'User ID': user.id,
-            'User Display Name': user.fullname,
-            'User Email Address': user.email,
-            'User Site Role': user.site_role,
-        } for user in users]
+    user_info = pd.DataFrame(
+        [
+            {
+                'User ID': user.id,
+                'User Display Name': user.fullname,
+                'User Email Address': user.email,
+                'User Site Role': user.site_role,
+            }
+            for user in users
+        ]
     )
 
     # Create a data sources report by merging data source info and user info dataframes.
