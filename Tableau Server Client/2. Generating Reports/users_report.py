@@ -4,6 +4,7 @@ import pathlib
 import keyring
 import pandas as pd
 import tableauserverclient as tsc
+
 def main():
     # Setup
     # Store token name, token value, and site ID in variables.
