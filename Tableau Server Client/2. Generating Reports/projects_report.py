@@ -1,7 +1,8 @@
 from datetime import datetime, timezone
+import pathlib
+
 import keyring
 import pandas as pd
-import pathlib
 import tableauserverclient as tsc
 
 def main():
@@ -28,23 +29,29 @@ def main():
 
     # Create a dataframe containing project information.
     project_info = pd.DataFrame(
-        {
-            'Project ID': [project.id for project in projects],
-            'Project Name': [project.name for project in projects],
-            'Project Description': [project.description for project in projects],
-            'Project Owner ID': [project.owner_id for project in projects],
-            'Parent Project ID': [project.parent_id for project in projects]
-        }
+        [
+            {
+                'Project ID': project.id,
+                'Project Name': project.name,
+                'Project Description': project.description,
+                'Project Owner ID': project.owner_id,
+                'Parent Project ID': project.parent_id
+            }
+            for project in projects
+        ]
     )
 
     # Create a dataframe containing user information.
     user_info = pd.DataFrame(
-        {
-            'User ID': [user.id for user in users],
-            'User Display Name': [user.fullname for user in users],
-            'User Email Address': [user.email for user in users],
-            'User Site Role': [user.site_role for user in users]
-        }
+        [
+            {
+                'User ID': user.id,
+                'User Display Name': user.fullname,
+                'User Email Address': user.email,
+                'User Site Role': user.site_role
+            }
+            for user in users
+        ]
     )
     
     # Create a projects report by merging project info and user info dataframes.
@@ -114,7 +121,7 @@ def main():
         
     # Create and write projects report dataframe to specified file path.
     write_path = pathlib.Path(
-        f'C:/Users/Chris/Desktop/social_media_content/youtube/tableau_server_client/tutorial_6/projects_report_'\
+        f'C:/Users/Chris/OneDrive/Desktop/social_media_content/youtube/tableau_server_client/tutorial_6/projects_report_' \
         f'{datetime.now(tz=timezone.utc).strftime("%Y%m%d%H%M%S")}.xlsx'
     )
 
