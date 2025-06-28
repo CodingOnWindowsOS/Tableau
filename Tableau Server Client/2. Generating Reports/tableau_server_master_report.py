@@ -1,7 +1,8 @@
 from datetime import datetime, timezone
+import pathlib
+
 import keyring
 import pandas as pd
-import pathlib
 import tableauserverclient as tsc
 
 def main():
@@ -33,12 +34,15 @@ def main():
             server.groups.populate_users(group)
         # Create a dataframe containing group information, including user membership.
         group_info = pd.DataFrame(
-            {
-                'Group ID': [group.id for group in groups],
-                'Group Name': [group.name for group in groups],
-                'Group Domain': [group.domain_name for group in groups],
-                'Users': [[user.id for user in group.users] for group in groups]
-            }
+            [
+                {
+                    'Group ID': group.id,
+                    'Group Name': group.name,
+                    'Group Domain': group.domain_name,
+                    'Users': [user.id for user in group.users]
+                }
+                for group in groups
+            ]
         )
         # Gather all projects.
         projects = [project for project in tsc.Pager(server.projects)]
@@ -57,13 +61,17 @@ def main():
         
     # Create a dataframe containing user information.
     user_info = pd.DataFrame(
-        {
-            'User ID': [user.id for user in users],
-            'User Display Name': [user.fullname for user in users],
-            'User Email Address': [user.email for user in users],
-            'User Site Role': [user.site_role for user in users]
-        }
+        [
+            {
+                'User ID': user.id,
+                'User Display Name': user.fullname,
+                'User Email Address': user.email,
+                'User Site Role': user.site_role
+            }
+            for user in users
+        ]
     )
+
 
     # Gather user ID values for owners of flows, data sources, and workbooks.
     flow_owners = [flow.owner_id for flow in flows]
@@ -145,13 +153,16 @@ def main():
 
     # Create a dataframe containing project information.
     project_info = pd.DataFrame(
-        {
-            'Project ID': [project.id for project in projects],
-            'Project Name': [project.name for project in projects],
-            'Project Description': [project.description for project in projects],
-            'Project Owner ID': [project.owner_id for project in projects],
-            'Parent Project ID': [project.parent_id for project in projects]
-        }
+        [
+            {
+                'Project ID': project.id,
+                'Project Name': project.name,
+                'Project Description': project.description,
+                'Project Owner ID': project.owner_id,
+                'Parent Project ID': project.parent_id
+            }
+            for project in projects
+        ]
     )
 
     # Create a projects report by merging project info and user info dataframes.
@@ -221,16 +232,19 @@ def main():
 
     # Create a dataframe containing data source information.
     data_source_info = pd.DataFrame(
-        {
-            'Data Source ID': [data_source.id for data_source in data_sources],
-            'Data Source Owner ID': [data_source.owner_id for data_source in data_sources],
-            'Data Source Name': [data_source.name for data_source in data_sources],
-            'Data Source Type': [data_source.datasource_type for data_source in data_sources],
-            'Data Source Created At': [data_source.created_at for data_source in data_sources],
-            'Data Source Updated At': [data_source.updated_at for data_source in data_sources],
-            'Data Source Project ID': [data_source.project_id for data_source in data_sources],
-            'Data Source Project Name': [data_source.project_name for data_source in data_sources]
-        }
+        [
+            {
+                'Data Source ID': data_source.id,
+                'Data Source Owner ID': data_source.owner_id,
+                'Data Source Name': data_source.name,
+                'Data Source Type': data_source.datasource_type,
+                'Data Source Created At': data_source.created_at,
+                'Data Source Updated At': data_source.updated_at,
+                'Data Source Project ID': data_source.project_id,
+                'Data Source Project Name': data_source.project_name,
+            }
+            for data_source in data_sources
+        ]
     )
 
     # Create a data sources report by merging data source info and user info dataframes.
@@ -268,16 +282,19 @@ def main():
 
     # Create a dataframe containing workbook information.
     workbook_info = pd.DataFrame(
-        {
-            'Workbook ID': [workbook.id for workbook in workbooks],
-            'Workbook Owner ID': [workbook.owner_id for workbook in workbooks],
-            'Workbook Name': [workbook.name for workbook in workbooks],
-            'Workbook Created At': [workbook.created_at for workbook in workbooks],
-            'Workbook Updated At': [workbook.updated_at for workbook in workbooks],
-            'Workbook Content URL': [workbook.webpage_url for workbook in workbooks],
-            'Workbook Project ID': [workbook.project_id for workbook in workbooks],
-            'Workbook Project Name': [workbook.project_name for workbook in workbooks]
-        }
+        [
+            {
+                'Workbook ID': workbook.id,
+                'Workbook Owner ID': workbook.owner_id,
+                'Workbook Name': workbook.name,
+                'Workbook Created At': workbook.created_at,
+                'Workbook Updated At': workbook.updated_at,
+                'Workbook Content URL': workbook.webpage_url,
+                'Workbook Project ID': workbook.project_id,
+                'Workbook Project Name': workbook.project_name
+            }
+            for workbook in workbooks
+        ]
     )
 
     # Create a dataframe containing the number of views per workbook.
@@ -334,22 +351,28 @@ def main():
 
     # Create a dataframe containing flow information.
     flow_info = pd.DataFrame(
-        {
-            'Flow ID': [flow.id for flow in flows],
-            'Flow Owner ID': [flow.owner_id for flow in flows],
-            'Flow Name': [flow.name for flow in flows],
-            'Flow Project ID': [flow.project_id for flow in flows],
-            'Flow Project Name': [flow.project_name for flow in flows],
-            'Flow Content URL': [flow.webpage_url for flow in flows]
-        }
+        [
+            {
+                'Flow ID': flow.id,
+                'Flow Owner ID': flow.owner_id,
+                'Flow Name': flow.name,
+                'Flow Project ID': flow.project_id,
+                'Flow Project Name': flow.project_name,
+                'Flow Content URL': flow.webpage_url
+            }
+            for flow in flows
+        ]
     )
 
     # Create a dataframe containing flow execution history.
     flow_run_history = pd.DataFrame(
-        {
-            'Flow ID': [run.flow_id for run in runs],
-            'Run Duration': [run.completed_at - run.started_at for run in runs]
-        }
+        [
+            {
+                'Flow ID': run.flow_id,
+                'Run Duration': run.completed_at - run.started_at
+            }
+            for run in runs
+        ]
     )
 
     # Create a data frame containing the execution summary.
@@ -397,29 +420,34 @@ def main():
 
     # Create a dataframe containing subscription information.
     subscription_info = pd.DataFrame(
-        {
-            'Subscription ID': [subscription.id for subscription in subscriptions],
-            'Subscription Owner ID': [subscription.user_id for subscription in subscriptions],
-            'Subscription Subject': [subscription.subject for subscription in subscriptions],
-            'Subscription Content ID': [subscription.target.id for subscription in subscriptions],
-            'Subscription Content Type': [subscription.target.type for subscription in subscriptions],
-            'Subscription Schedule': [subscription.schedule[0].interval_item for subscription in subscriptions]
-        }
+        [
+            {
+                'Subscription ID': subscription.id,
+                'Subscription Owner ID': subscription.user_id,
+                'Subscription Subject': subscription.subject,
+                'Subscription Content ID': subscription.target.id,
+                'Subscription Content Type': subscription.target.type,
+                'Subscription Schedule': subscription.schedule[0].interval_item
+            }
+            for subscription in subscriptions
+        ]
     )
 
     # Create a dataframe containing view information.
     view_info = pd.DataFrame(
-        {
-            'Content ID': [view.id for view in views],
-            'Content Owner ID': [view.owner_id for view in views],
-            'Content Name': [view.name for view in views],
-            'Content URL': [
-                server.server_address
-                + '/#/site/sqlshortreads/views/'
-                + view.content_url.replace('/sheets/', '/') 
-                for view in views
-            ]
-        }
+        [
+            {
+                'Content ID': view.id,
+                'Content Owner ID': view.owner_id,
+                'Content Name': view.name,
+                'Content URL': 
+                    server.server_address
+                    + '/#/site/sqlshortreads/views/'
+                    + view.content_url.replace('/sheets/', '/') 
+                
+            }
+            for view in views
+        ]
     )
 
     # Vertically concatenate the workbook info and view info dataframes.
@@ -492,7 +520,7 @@ def main():
 
     # Create and write object-specific dataframes to specified file path.
     write_path = pathlib.Path(
-        f'C:/Users/Chris/Desktop/social_media_content/youtube/tableau_server_client/tutorial_12/master_report_'\
+        f'C:/Users/Chris/OneDrive/Desktop/social_media_content/youtube/tableau_server_client/tutorial_12/master_report_'\
         f'{datetime.now(tz=timezone.utc).strftime("%Y%m%d%H%M%S")}.xlsx'
     )
 
@@ -508,4 +536,4 @@ def main():
         subscriptions_report.to_excel(writer, sheet_name='Subscriptions', index=False)
 
 if __name__ == '__main__':
-    main() 
+    main()
