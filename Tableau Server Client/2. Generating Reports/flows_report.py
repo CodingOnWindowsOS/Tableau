@@ -31,22 +31,28 @@ def main():
 
     # Create a dataframe containing flow information.
     flow_info = pd.DataFrame(
-        {
-            'Flow ID': [flow.id for flow in flows],
-            'Flow Owner ID': [flow.owner_id for flow in flows],
-            'Flow Name': [flow.name for flow in flows],
-            'Flow Project ID': [flow.project_id for flow in flows],
-            'Flow Project Name': [flow.project_name for flow in flows],
-            'Flow Content URL': [flow.webpage_url for flow in flows]
-        }
+        [
+            {
+                'Flow ID': flow.id,
+                'Flow Owner ID': flow.owner_id,
+                'Flow Name': flow.name,
+                'Flow Project ID': flow.project_id,
+                'Flow Project Name': flow.project_name,
+                'Flow Content URL': flow.webpage_url
+            }
+            for flow in flows
+        ]
     )
 
     # Create a dataframe containing flow execution history.
     flow_run_history = pd.DataFrame(
-        {
-            'Flow ID': [run.flow_id for run in runs],
-            'Run Duration': [run.completed_at - run.started_at for run in runs]
-        }
+        [
+            {
+                'Flow ID': run.flow_id,
+                'Run Duration': run.completed_at - run.started_at
+            }
+            for run in runs
+        ]
     )
 
     # Create a data frame containing the execution summary.
@@ -76,12 +82,15 @@ def main():
 
     # Create a dataframe containing user information.
     user_info = pd.DataFrame(
-        {
-            'User ID': [user.id for user in users],
-            'User Display Name': [user.fullname for user in users],
-            'User Email Address': [user.email for user in users],
-            'User Site Role': [user.site_role for user in users]
-        }
+        [
+            {
+                'User ID': user.id,
+                'User Display Name': user.fullname,
+                'User Email Address': user.email,
+                'User Site Role': user.site_role,
+            }
+            for user in users
+        ]
     )
 
     # Create a flows report by merging flow info, flow run summary, and user info dataframes.
@@ -103,7 +112,7 @@ def main():
         
     # Create and write flows report dataframe to specified file path.
     write_path = pathlib.Path(
-        f'C:/Users/Chris/Desktop/social_media_content/youtube/tableau_server_client/tutorial_9/flows_report_'\
+        f'C:/Users/Chris/OneDrive/Desktop/social_media_content/youtube/tableau_server_client/tutorial_9/flows_report_'\
         f'{datetime.now(tz=timezone.utc).strftime("%Y%m%d%H%M%S")}.xlsx'
     )
 
@@ -111,4 +120,4 @@ def main():
         flows_report.to_excel(writer, sheet_name='Flows', index=False)
 
 if __name__ == '__main__':
-    main() 
+    main()
