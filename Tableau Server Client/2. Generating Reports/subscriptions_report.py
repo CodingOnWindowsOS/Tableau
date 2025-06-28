@@ -33,39 +33,47 @@ def main():
 
     # Create a dataframe containing subscription information.
     subscription_info = pd.DataFrame(
-        {
-            'Subscription ID': [subscription.id for subscription in subscriptions],
-            'Subscription Owner ID': [subscription.user_id for subscription in subscriptions],
-            'Subscription Subject': [subscription.subject for subscription in subscriptions],
-            'Subscription Content ID': [subscription.target.id for subscription in subscriptions],
-            'Subscription Content Type': [subscription.target.type for subscription in subscriptions],
-            'Subscription Schedule': [subscription.schedule[0].interval_item for subscription in subscriptions]
-        }
+        [
+            {
+                'Subscription ID': subscription.id,
+                'Subscription Owner ID': subscription.user_id,
+                'Subscription Subject': subscription.subject,
+                'Subscription Content ID': subscription.target.id,
+                'Subscription Content Type': subscription.target.type,
+                'Subscription Schedule': subscription.schedule[0].interval_item
+            }
+            for subscription in subscriptions
+        ]
     )
 
     # Create a dataframe containing workbook information.
     workbook_info = pd.DataFrame(
-        {
-            'Content ID': [workbook.id for workbook in workbooks],
-            'Content Owner ID': [workbook.owner_id for workbook in workbooks],
-            'Content Name': [workbook.name for workbook in workbooks],
-            'Content URL': [workbook.webpage_url for workbook in workbooks]
-        }
+        [
+            {
+                'Content ID': workbook.id,
+                'Content Owner ID': workbook.owner_id,
+                'Content Name': workbook.name,
+                'Content URL': workbook.webpage_url
+            }
+            for workbook in workbooks
+        ]
     )
 
     # Create a dataframe containing view information.
     view_info = pd.DataFrame(
-        {
-            'Content ID': [view.id for view in views],
-            'Content Owner ID': [view.owner_id for view in views],
-            'Content Name': [view.name for view in views],
-            'Content URL': [
-                server.server_address
-                + '/#/site/sqlshortreads/views/'
-                + view.content_url.replace('/sheets/', '/') 
-                for view in views
-            ]
-        }
+        [
+            {
+                'Content ID': view.id,
+                'Content Owner ID': view.owner_id,
+                'Content Name': view.name,
+                'Content URL': 
+                    server.server_address
+                    + '/#/site/sqlshortreads/views/'
+                    + view.content_url.replace('/sheets/', '/') 
+                
+            }
+            for view in views
+        ]
     )
 
     # Vertically concatenate the workbook info and view info dataframes.
@@ -77,12 +85,15 @@ def main():
 
     # Create a dataframe containing user information.
     user_info = pd.DataFrame(
-        {
-            'User ID': [user.id for user in users],
-            'User Display Name': [user.fullname for user in users],
-            'User Email Address': [user.email for user in users],
-            'User Site Role': [user.site_role for user in users]
-        }
+        [
+            {
+                'User ID': user.id,
+                'User Display Name': user.fullname,
+                'User Email Address': user.email,
+                'User Site Role': user.site_role
+            }
+            for user in users
+        ]
     )
 
     # Create a subscriptions report by merging the subscription info, workbook info, view info, and user info dataframes.
@@ -141,4 +152,4 @@ def main():
         subscriptions_report.to_excel(writer, sheet_name='Subscriptions', index=False)
 
 if __name__ == '__main__':
-    main() 
+    main()
