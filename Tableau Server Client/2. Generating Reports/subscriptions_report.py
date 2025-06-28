@@ -1,7 +1,8 @@
 from datetime import datetime, timezone
+import pathlib
+
 import keyring
 import pandas as pd
-import pathlib
 import tableauserverclient as tsc
 
 def main():
