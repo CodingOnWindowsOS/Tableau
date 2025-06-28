@@ -1,7 +1,8 @@
 from datetime import datetime, timezone
+import pathlib
+
 import keyring
 import pandas as pd
-import pathlib
 import tableauserverclient as tsc
 
 def main():
@@ -30,16 +31,20 @@ def main():
 
     # Create a dataframe containing workbook information.
     workbook_info = pd.DataFrame(
-        {
-            'Workbook ID': [workbook.id for workbook in workbooks],
-            'Workbook Owner ID': [workbook.owner_id for workbook in workbooks],
-            'Workbook Name': [workbook.name for workbook in workbooks],
-            'Workbook Created At': [workbook.created_at for workbook in workbooks],
-            'Workbook Updated At': [workbook.created_at for workbook in workbooks],
-            'Workbook Content URL': [workbook.webpage_url for workbook in workbooks],
-            'Workbook Project ID': [workbook.project_id for workbook in workbooks],
-            'Workbook Project Name': [workbook.project_name for workbook in workbooks]
-        }
+        [
+            {
+                'Workbook ID': workbook.id,
+                'Workbook Owner ID': workbook.owner_id,
+                'Workbook Name': workbook.name,
+                'Workbook Created At': workbook.created_at,
+                'Workbook Updated At': workbook.updated_at,
+                'Workbook Content URL': workbook.webpage_url,
+                'Workbook Project ID': workbook.project_id,
+                'Workbook Project Name': workbook.project_name
+            }
+            for workbook in workbooks
+        ]
+        
     )
 
     # Create a dataframe containing the number of views per workbook.
@@ -58,12 +63,15 @@ def main():
 
     # Create a dataframe containing user information.
     user_info = pd.DataFrame(
-        {
-            'User ID': [user.id for user in users],
-            'User Display Name': [user.fullname for user in users],
-            'User Email Address': [user.email for user in users],
-            'User Site Role': [user.site_role for user in users]
-        }
+        [
+            {
+                'User ID': user.id,
+                'User Display Name': user.fullname,
+                'User Email Address': user.email,
+                'User Site Role': user.site_role,
+            }
+            for user in users
+        ]
     )
 
     # Create a workbooks report by merging workbook info, view info, and user info dataframes.
@@ -106,7 +114,7 @@ def main():
     
     # Create and write workbooks report dataframe to specified file path.
     write_path = pathlib.Path(
-        f'C:/Users/Chris/Desktop/social_media_content/youtube/tableau_server_client/tutorial_8/workbooks_report_'\
+        f'C:/Users/Chris/OneDrive/Desktop/social_media_content/youtube/tableau_server_client/tutorial_8/workbooks_report_'\
         f'{datetime.now(tz=timezone.utc).strftime("%Y%m%d%H%M%S")}.xlsx'
     )
 
@@ -114,4 +122,4 @@ def main():
         workbooks_report.to_excel(writer, sheet_name='Workbooks', index=False)
 
 if __name__ == '__main__':
-    main() 
+    main()
