@@ -3,12 +3,12 @@ Today is the day. Your team is standing up their Tableau Server in preparation f
 
 The organization’s structure consists of the following five regions, North America, Brazil, UK&I, Spanish Latam, EMEA, and APAC. Each of those regions is comprised of nine divisions, Marketing, Sales, Technology, Operations, Finance, Customer Support, Product, Legal, and Human Resources.
 
-Use the Tableau Server Client (TSC) python library to create the organizational structure, programattically. Start off by manually creating a "DataDevQuest Challenge" project using Tableau's front-end user interface. This is the project where the new organizational structure will be maintained within. Upon completing the challenge, the DataDevQuest Challenge project hierarchy should look the one below.
+Use the Tableau Server Client (TSC) python library to create the organizational structure, programattically. Start off by manually creating a "Tableau Challenge" project using Tableau's front-end user interface. This is the project where the new organizational structure will be maintained within. Upon completing the challenge, the Tableau Challenge project hierarchy should look the one below.
 
 <details>
   <summary>Click to view the expected hierarchy.</summary>
   
-    - DataDevQuest Challenge  
+    - Tableau Challenge  
       - APAC  
         - Marketing  
         - Sales  
@@ -152,25 +152,25 @@ with SERVER.auth.sign_in(TABLEAU_AUTHENTICATION):
     SERVER.use_highest_version()
 ```
 
-Retrieve the project ID value corresponding to the “DataDevQuest Challenge” project you created at the beginning of this tutorial by using the projects endpoint and filter method. Remember, this is where the to-be project hierarchy will reside. By creating the project manually in advance, we have made the task of specifying where to place the new region and division projects less complex. Generally, you will not know the parent project ID value in advance and project names will not be unique across the environment.
+Retrieve the project ID value corresponding to the “Tableau Challenge” project you created at the beginning of this tutorial by using the projects endpoint and filter method. Remember, this is where the to-be project hierarchy will reside. By creating the project manually in advance, we have made the task of specifying where to place the new region and division projects less complex. Generally, you will not know the parent project ID value in advance and project names will not be unique across the environment.
 
 ```python
-    # Extract the parent project ID for the 'DataDevQuest Challenge' project where the new projects will be created.
-    parent_project_id = SERVER.projects.filter(name='DataDevQuest Challenge')[0].id
+    # Extract the parent project ID for the 'Tableau Challenge' project where the new projects will be created.
+    parent_project_id = SERVER.projects.filter(name='Tableau Challenge')[0].id
 ```
 
-Below is an example on how you could retrieve the parent project ID value (i.e., location) of a project to ensure any action you take programmatically applies to the right objects (e.g., flow, workbook, data source, project, etc.). To incorporate this into the solution provided, you would programmatically determine the ID value of the "DataDevQuest Challenge" to ensure each region project is created underneath that project. The same process would be repeated when creating the individual division projects corresponding to each region.
+Below is an example on how you could retrieve the parent project ID value (i.e., location) of a project to ensure any action you take programmatically applies to the right objects (e.g., flow, workbook, data source, project, etc.). To incorporate this into the solution provided, you would programmatically determine the ID value of the "Tableau Challenge" to ensure each region project is created underneath that project. The same process would be repeated when creating the individual division projects corresponding to each region.
 
 ```python
 # Create a filter for the project for which the projects will be published.
 # There could be multiple projects with the same name, so the one with a parent project
-# name of "DataDevQuest Challenge" must be identified.
-parent_project = server.projects.filter(name='DataDevQuest Challenge')
+# name of "Tableau Challenge" must be identified.
+parent_project = server.projects.filter(name='Tableau Challenge')
 projects = server.projects.filter(name='North America')
 project = [project for project in projects if project.parent_id == parent_project[0].id]
 ```
 
-For the next step, you will iterate over the region-division mapping dictionary to create a project for each region and a series of projects corresponding to each region. Each of these “region” projects are to be placed within the "DataDevQuest Challenge" project. Take special note on the use of sleep(2) here to artificially pause the script execution for two seconds immediately after the creation of each region project. This is required because the creation of a project may take longer to register on your Tableau Server or Tableau Cloud instance than the amount of time the script requires to continue with the subsequent creation of division projects underneath each region project. In other words, when you attempt to create the first division project for a particular region, it is quite possible that you will attempt to retrieve the project ID value for the parent project (i.e., respective region) and it will not exist yet, resulting in an error being thrown.
+For the next step, you will iterate over the region-division mapping dictionary to create a project for each region and a series of projects corresponding to each region. Each of these “region” projects are to be placed within the "Tableau Challenge" project. Take special note on the use of sleep(2) here to artificially pause the script execution for two seconds immediately after the creation of each region project. This is required because the creation of a project may take longer to register on your Tableau Server or Tableau Cloud instance than the amount of time the script requires to continue with the subsequent creation of division projects underneath each region project. In other words, when you attempt to create the first division project for a particular region, it is quite possible that you will attempt to retrieve the project ID value for the parent project (i.e., respective region) and it will not exist yet, resulting in an error being thrown.
 
 ```python
     # For each region, create a new project and then create the division projects within it.
@@ -244,8 +244,8 @@ region_division_mapping = (
 with SERVER.auth.sign_in(TABLEAU_AUTHENTICATION):
     # Ensure the most recent Tableau REST API version is used.
     SERVER.use_highest_version()
-    # Extract the parent project ID for the 'DataDevQuest Challenge' project where the new projects will be created.
-    parent_project_id = SERVER.projects.filter(name='DataDevQuest Challenge')[0].id
+    # Extract the parent project ID for the 'Tableau Challenge' project where the new projects will be created.
+    parent_project_id = SERVER.projects.filter(name='Tableau Challenge')[0].id
     # For each region, create a new project and then create the division projects within it.
     for region, divisions in region_division_mapping.items():
         new_region_project = tsc.ProjectItem(
