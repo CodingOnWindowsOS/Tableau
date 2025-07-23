@@ -24,8 +24,8 @@ def main():
         server.use_highest_version()
         # Gather all flows.
         flows = [flow for flow in tsc.Pager(server.flows)]
-        # Gather flow run history.
-        runs = [run for run in tsc.Pager(server.flow_runs)]
+        # Gather flow run history for "completed" jobs (i.e., progress value of 100).
+        runs = [run for run in server.flow_runs.filter(progress=100, page_size=1000)]
         # Gather all users.
         users = [user for user in tsc.Pager(server.users)]
 
