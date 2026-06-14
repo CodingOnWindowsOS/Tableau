@@ -43,7 +43,7 @@ def main():
                 'Job Details\n'
                 f'Job ID: {job.id}\n'
                 f'Data Source Name: {data_source.name}\n'
-                f'Job Created Time: {job.started_at}\n'
+                f'Job Created Time: {job.created_at}\n'
                 f'Job Start Time: {job.started_at}\n'
                 f'Job End Time: {job.completed_at}\n'
             )
